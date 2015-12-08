@@ -62,7 +62,7 @@ if (!net._normalizeConnectArgs) {
 
 wrap(net.Server.prototype, '_listen2', function (original) {
   return function () {
-    this.on('connection', function (socket) {
+    this.once('connection', function (socket) {
       if (socket._handle) {
         socket._handle.onread = wrapCallback(socket._handle.onread);
       }
